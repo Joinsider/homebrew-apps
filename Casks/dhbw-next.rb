@@ -12,7 +12,7 @@ cask "dhbw-next" do
     strategy :github_latest
   end
 
-  app "DHBW Next.app"
+  app "dhbw-next.app"
 
   zap trash: [
     "~/Library/Application Support/dhbw-next",
