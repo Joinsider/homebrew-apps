@@ -1,4 +1,4 @@
-class SignDhbw < Formula
+class SignDhbwNext < Formula
   desc "DHBW signature tool"
   homepage "https://github.com/Joinsider/homebrew-apps"
   url "https://github.com/Joinsider/homebrew-apps/archive/refs/tags/v1.0.0.tar.gz"
