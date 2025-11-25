@@ -36,6 +36,7 @@ jobs:
           new_patch=$((patch + 1))
           new_version="v$major.$minor.$new_patch"
           echo "new_version=$new_version" >> $GITHUB_OUTPUT
+          echo "version=$major.$minor.$new_patch" >> $GITHUB_OUTPUT
           echo "New version: $new_version"
 
       - name: Create and push tag
@@ -53,8 +54,8 @@ jobs:
           draft: false
           prerelease: false
           generate_release_notes: true
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }} # Explicitly pass token here
+          target_commitish: main # Explicitly set target
 
       - name: Calculate SHA256
         id: sha256
