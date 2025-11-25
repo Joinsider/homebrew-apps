@@ -6,6 +6,6 @@ class SignDhbwNext < Formula
   license "MIT"
 
   def install
-    bin.install "sign-dhbw-next.sh" => "sign-dhbw"
+    bin.install "sign-dhbw-next.sh" => "sign-dhbw-next"
   end
 end
