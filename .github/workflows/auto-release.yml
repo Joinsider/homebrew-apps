@@ -55,6 +55,8 @@ jobs:
           prerelease: false
           generate_release_notes: true
           target_commitish: main # Explicitly set target
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Calculate SHA256
         id: sha256
