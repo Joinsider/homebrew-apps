@@ -4,6 +4,7 @@
 set -e
 
 CERT_NAME="DHBW Local Certificate"
+APP_PATH="/Applications/dhbw-next.app"
 
 echo "Creating local code signing certificate..."
 
@@ -42,17 +43,30 @@ fi
 
 echo ""
 echo "Signing DHBW Next app..."
-codesign --force --sign "$CERT_NAME" --deep /Applications/dhbw-next.app
+codesign --force --sign "$CERT_NAME" --deep "$APP_PATH"
 
 echo ""
 echo "Verifying signature..."
-if codesign -vv /Applications/dhbw-next.app 2>&1; then
+if codesign -vv "$APP_PATH" 2>&1; then
     echo ""
     echo "✓ Successfully signed! DHBW Next is ready to use."
-    echo ""
-    echo "The app will now maintain keychain access across updates"
-    echo "as long as you sign each version with '$CERT_NAME'"
 else
     echo ""
     echo "⚠ Signing completed but verification had warnings."
 fi
+
+# Ask user if they want to remove quarantine attributes
+echo ""
+read -p "Do you want to remove Gatekeeper quarantine attributes? (y/n): " remove_quarantine
+if [[ "$remove_quarantine" == "y" ]]; then
+    echo ""
+    echo "Removing quarantine attributes..."
+    xattr -cr "$APP_PATH"
+    echo "✓ Quarantine attributes removed."
+    echo ""
+    echo "Note: This bypasses macOS Gatekeeper for this app."
+fi
+
+echo ""
+echo "The app will now maintain keychain access across updates"
+echo "as long as you sign each version with '$CERT_NAME'"
