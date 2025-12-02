@@ -1,6 +1,6 @@
 cask "dhbw-next" do
-  version "1.0.12"
-  sha256 "94fe76db4bbb492a94b937ca1aa391de4be18f3a31584ad212b0e89fc976973f"
+  version "1.0.13"
+  sha256 "523469d7239ebe1be6e89ab35e1bcec44c52eabed3d6418773a3b0e4db6ed560"
 
   url "https://github.com/Joinsider/dhbw-next/releases/download/v#{version}/dhbw-next-#{version}.dmg"
   name "DHBW Next"
