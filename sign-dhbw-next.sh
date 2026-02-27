@@ -4,7 +4,7 @@
 set -e
 
 CERT_NAME="DHBW Local Certificate"
-APP_PATH="/Applications/dhbw-next.app"
+APP_PATH="/Applications/dhbw-horb-student-app.app"
 
 echo "Creating local code signing certificate..."
 
