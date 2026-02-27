@@ -1,8 +1,8 @@
 class SignDhbwNext < Formula
   desc "DHBW signature tool"
   homepage "https://github.com/Joinsider/homebrew-apps"
-  url "https://github.com/Joinsider/homebrew-apps/archive/refs/tags/v1.0.1.tar.gz"
-  sha256 "683fe54ea50cfc7c1776edb747ef78f9accaf810536329ee252af656cc2adc63"
+  url "https://github.com/Joinsider/homebrew-apps/archive/refs/tags/v1.0.2.tar.gz"
+  sha256 "3d352214a64f46ade9aa0725044eb71d8514ddb29c778222a37ce330c134f336"
   license "MIT"
 
   def install
