@@ -1,0 +1,44 @@
+name: Update dhbw-next Cask
+
+on:
+  repository_dispatch:
+    types: [new-dhbw-release]
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout tap repo
+        uses: actions/checkout@v4
+
+      - name: Compute SHA256 of DMG
+        id: sha
+        env:
+          VERSION: ${{ github.event.client_payload.version }}
+        run: |
+          # Strip leading 'v' (e.g. v2.1.0 → 2.1.0)
+          CLEAN_VERSION="${VERSION#v}"
+
+          DMG_URL="https://github.com/Joinsider/dhbw/releases/download/${VERSION}/dhbw-horb-student-app-${CLEAN_VERSION}.dmg"
+
+          SHA=$(curl -sL "$DMG_URL" | shasum -a 256 | awk '{print $1}')
+          echo "sha256=$SHA" >> "$GITHUB_OUTPUT"
+          echo "clean_version=$CLEAN_VERSION" >> "$GITHUB_OUTPUT"
+
+      - name: Update cask version and sha256
+        env:
+          SHA256: ${{ steps.sha.outputs.sha256 }}
+          CLEAN_VERSION: ${{ steps.sha.outputs.clean_version }}
+        run: |
+          CASK="Casks/dhbw-next.rb"
+
+          sed -i "s/version \".*\"/version \"$CLEAN_VERSION\"/" "$CASK"
+          sed -i "s/sha256 \".*\"/sha256 \"$SHA256\"/" "$CASK"
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add Casks/dhbw-next.rb
+          git commit -m "chore: update dhbw-next to ${{ github.event.client_payload.version }}"
+          git push
