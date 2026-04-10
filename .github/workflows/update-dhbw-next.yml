@@ -32,7 +32,8 @@ jobs:
         run: |
           CASK="Casks/dhbw-next.rb"
 
-          sed -i "s/version \"*\"/version \"$CLEAN_VERSION\"/" "$CASK"
+          # FIXED: Added the '.' before the '*' to correctly match the inner string
+          sed -i "s/version \".*\"/version \"$CLEAN_VERSION\"/" "$CASK"
           sed -i "s/sha256 \".*\"/sha256 \"$SHA256\"/" "$CASK"
 
       - name: Commit and push
