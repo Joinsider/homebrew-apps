@@ -19,7 +19,7 @@ jobs:
           # Strip leading 'v' (e.g. v2.1.0 → 2.1.0)
           CLEAN_VERSION="${VERSION#v}"
 
-          DMG_URL="https://github.com/Joinsider/dhbw/releases/download/${VERSION}/dhbw-horb-student-app-${CLEAN_VERSION}.dmg"
+          DMG_URL="https://github.com/Joinsider/dhbw/releases/download/${VERSION}/dhbw-horb-student-app-${VERSION}.dmg"
 
           SHA=$(curl -sL "$DMG_URL" | shasum -a 256 | awk '{print $1}')
           echo "sha256=$SHA" >> "$GITHUB_OUTPUT"
@@ -32,7 +32,7 @@ jobs:
         run: |
           CASK="Casks/dhbw-next.rb"
 
-          sed -i "s/version \".*\"/version \"$CLEAN_VERSION\"/" "$CASK"
+          sed -i "s/version \"*\"/version \"$CLEAN_VERSION\"/" "$CASK"
           sed -i "s/sha256 \".*\"/sha256 \"$SHA256\"/" "$CASK"
 
       - name: Commit and push
