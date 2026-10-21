@@ -1,6 +1,6 @@
 cask "dhbw-next" do
-  version "3.0.3"
-  sha256 "191e0be8394525e305fdd25a4efc85b175013bf2bb31ed7f272f2c36235591e3"
+  version "3.0.4"
+  sha256 "1433aca6d31ded82571631d1d9eedb3ad411a32a8aa6934513b5f3026d5437da"
 
   url "https://github.com/Joinsider/dhbw/releases/download/v#{version}/dhbw-student-app-v#{version}.dmg"
   name "DHBW Next"
