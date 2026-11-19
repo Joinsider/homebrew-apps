@@ -15,7 +15,7 @@ cask "dhbw-next" do
   # Since 3.0.4 the DMG carries the native SwiftUI app (Apple Silicon, macOS 26), not the
   # Compose desktop build that was called dhbw-horb-student-app.app.
   depends_on arch: :arm64
-  depends_on macos: :tahoe
+  depends_on macos: :sequoia
 
   app "DHBW-Horb.app"
 
